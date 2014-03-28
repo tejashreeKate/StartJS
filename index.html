@@ -18,12 +18,12 @@ window.onload = function(){
   var W = canvas.width;
   var H = canvas.height;
   var degrees = 0;
-  var new_degrees = 0;
+  var new_val = 0;
   var difference = 0;
   var color = "#2ecc71"; 
   var bgcolor = "white";
   var text;
-  var animation_loop, redraw_loop;
+  var animation, call;
   
   function init()
   {
@@ -51,16 +51,16 @@ window.onload = function(){
   
   function draw()
   {
-    if(typeof animation_loop != undefined) clearInterval(animation_loop);
+    if(typeof animation != undefined) clearInterval(animation);
     
-    new_degrees = (degrees+30);
-    difference = new_degrees - degrees;
+    new_val = (degrees+30);
+    difference = new_val - degrees;
     console.log(text)
     if(text=='100%'){
-    clearInterval(redraw_loop);
+    clearInterval(call);
     }
     else{
-      animation_loop = setInterval(animate_to, 1000/difference);
+      animation = setInterval(animate_to, 1000/difference);
 
     }
 
@@ -68,9 +68,9 @@ window.onload = function(){
   
   function animate_to()
   {
-    if(degrees == new_degrees){
-      clearInterval(animation_loop);
-    }else if(degrees < new_degrees){
+    if(degrees == new_val){
+      clearInterval(animation);
+    }else if(degrees < new_val){
       degrees++;
     }else{
       degrees--;
@@ -80,7 +80,7 @@ window.onload = function(){
   }
   
   draw();
-      redraw_loop = setInterval(draw, 2000); 
+      call = setInterval(draw, 2000); 
 
 }
 </script>
